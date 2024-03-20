@@ -176,19 +176,19 @@ void setup() {
   Serial.println("Starting BLE Client application...");
   BLEDevice::init("");
 
-  BLEScan* pBLEScan = BLEDevice::getScan();
-  pBLEScan->setAdvertisedDeviceCallbacks(new MyAdvertisedDeviceCallbacks());
-  pBLEScan->setInterval(1500);
-  pBLEScan->setWindow(500);
-  pBLEScan->setActiveScan(true);
-  pBLEScan->start(5, false);
+  
   
   
 } // End of setup.
 
 void loop() {
   Serial.println(i);
-  
+  BLEScan* pBLEScan = BLEDevice::getScan();
+  pBLEScan->setAdvertisedDeviceCallbacks(new MyAdvertisedDeviceCallbacks());
+  pBLEScan->setInterval(1500);
+  pBLEScan->setWindow(500);
+  pBLEScan->setActiveScan(true);
+  pBLEScan->start(5, false);
 
   serviceUUID = serviceUUIDs[i];
   
