@@ -182,7 +182,7 @@ void setup() {
 } // End of setup.
 
 void loop() {
-  Serial.println(i);
+  Serial.println("Device Index: "+ String(i));
   BLEScan* pBLEScan = BLEDevice::getScan();
   pBLEScan->setAdvertisedDeviceCallbacks(new MyAdvertisedDeviceCallbacks());
   pBLEScan->setInterval(1500);
@@ -212,6 +212,11 @@ void loop() {
     Serial.println("Characteristic 2 : " + txValue);
     Serial.println("");
 
+    i++;
+    if (i == 5){
+      i =0;
+    }
+
     
     // Set the characteristic's value to be the array of bytes that is actually a string.
     // pRemoteChar_2->writeValue(txValue.c_str(), txValue.length());
@@ -220,10 +225,7 @@ void loop() {
     BLEDevice::getScan()->start(0); 
   }
 
-  i++;
-  if (i == 5){
-    i =0;
-  }
+  
 
   delay(2000);
 }
